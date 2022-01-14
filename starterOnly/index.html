@@ -73,7 +73,9 @@
                   name="first"
                   minlength="2"
                   required
-                /><br>
+                />
+                <span class="error" id="no_first"></span>
+                <br>
               </div>
               <div
                 class="formData">
@@ -85,7 +87,9 @@
                   name="last"                  
                   minlength="2"
                   required
-                /><br>
+                />
+                <span class="error" id="no_last"></span>
+                <br>
               </div>
               <div
                 class="formData">
@@ -96,7 +100,9 @@
                   id="email"
                   name="email"
                   required
-                /><br>
+                />
+                <span class="error" id="no_email"></span>
+                <br>
               </div>
               <div
                 class="formData">
@@ -107,12 +113,15 @@
                   id="birthdate"
                   name="birthdate"
                   required
-                /><br>
+                />
+                <span class="error" id="no_birth"></span>
+                <br>
               </div>
               <div
                 class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" required>
+                <span class="error" id="no_num"></span>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
@@ -184,6 +193,7 @@
                   <span class="checkbox-icon"></span>
                   Portland</label
                 >
+                <span class="error" id="no_city"></span>
               </div>
 
               <div
@@ -199,6 +209,7 @@
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
+                <span class="error" id="no_check"></span>
                 <br>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
@@ -209,6 +220,7 @@
               </div>
               <input
                 class="btn-submit"
+                id="btn-submit"
                 type="submit"
                 class="button"
                 value="C'est parti"
