@@ -15,6 +15,7 @@ const formData = document.querySelectorAll(".formData");
 const btnClose = document.querySelector(".close");
 const btnSubmit = document.getElementById("btn-submit");
 const form = document.getElementById("form");
+const success = document.getElementById("success");
 
 //Error span selectors
 const noFirst = document.getElementById("no_first");
@@ -202,6 +203,7 @@ btnSubmit.addEventListener('click', function(e) {
   }
 
   if (isFormValid) {
-    modalbg.style.display = "none"
+    modalbg.style.display = "none";
+    success.style.display = "inline"
   }
 })
