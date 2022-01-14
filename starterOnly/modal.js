@@ -68,6 +68,7 @@ function close() {
   modalbg.style.display = "none";
 }
 
+//Vérification de la validité du prénom
 function isFirstValid() {
   if (inputFirst.value.length >= 2){
     if (nameRegex.test(inputFirst.value)) {
@@ -85,6 +86,7 @@ function isFirstValid() {
   }
 }
 
+//Vérification de la validité du nom
 function isLastValid() {
   if (inputLast.value.length >= 2) {
     if (nameRegex.test(inputLast.value)) {
@@ -102,6 +104,7 @@ function isLastValid() {
   }
 }
 
+//Vérification de la validité de l'email
 function isMailValid() {
   if (emailRegex.test(inputMail.value)) {
     noMail.style.display = "none"
@@ -113,6 +116,7 @@ function isMailValid() {
   }
 }
 
+//Vérification de la validité de la date de naissance
 function isBirthValid() {
   if (inputBirth.value != 0) {
     noBirth.style.display = "none";
@@ -125,6 +129,7 @@ function isBirthValid() {
  
 }
 
+//Vérification de la validité du nombre de participations
 function isQuantityValid() {
   if (inputQuantity.value >= 0 && isNaN(inputQuantity.value) === false && inputQuantity.value !== "") {
     noQuant.style.display = "none"
@@ -136,13 +141,15 @@ function isQuantityValid() {
   }
 }
 
+//Vérification de la ville sélectionnée
 function isCityValid() {
   let counter = 0
-  for (let location of inputLocation) {
+  inputLocation.forEach(function(location){
     if (location.checked) {
       counter++
     } 
-  }
+  })
+
   if (counter !== 0) {
     noCity.style.display = "none"
     return true
@@ -153,6 +160,7 @@ function isCityValid() {
   }
 }
 
+//Vérification du cochage des conditions
 function isCheckboxValid() {
   if (inputCheckbox.checked) {
     noCheck.style.display = "none"
@@ -172,6 +180,7 @@ form.addEventListener('input', isLastValid);
 form.addEventListener('input', isMailValid)
 form.addEventListener('input', isQuantityValid)
 
+//vérification de la validité du formulaire
 btnSubmit.addEventListener('click', function(e) {
   e.preventDefault()
 
@@ -202,6 +211,7 @@ btnSubmit.addEventListener('click', function(e) {
     isFormValid = false
   }
 
+  //Si le formulaire est valide on ferme la fenêtre et on affiche un message
   if (isFormValid) {
     modalbg.style.display = "none";
     success.style.display = "inline"
