@@ -56,7 +56,7 @@ const emailRegex = RegExp(/^[a-z0-9._-]+@[a-z_]+?\.[a-z]{2,3}$/);
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // close modal event
-btnClose.addEventListener("click", close);
+btnClose.addEventListener("click", closeModal);
 
 // launch modal form
 function launchModal() {
@@ -64,8 +64,29 @@ function launchModal() {
 }
 
 // close modal form
-function close() {
+function closeModal() {
   modalbg.style.display = "none";
+}
+
+//retourne un message d'erreur pour l'id concerné
+function errorMessage(idName) {
+  idName.style.display = "inline"
+  switch(idName) {
+    case noFirst : idName.innerText = (errorMessages.firstName);
+    break;
+    case noLast : idName.innerText = (errorMessages.lastName);
+    break;
+    case noMail : idName.innerText = (errorMessages.email);
+    break;
+    case noBirth : idName.innerText = (errorMessages.birthdate);
+    break;
+    case noQuant : idName.innerText = (errorMessages.quantity);
+    break;
+    case noCity : idName.innerText = (errorMessages.location);
+    break;
+    case noCheck : idName.innerText = (errorMessages.checkbox);
+    break;
+  }
 }
 
 //Vérification de la validité du prénom
@@ -80,8 +101,7 @@ function isFirstValid() {
       return false;
     }
   } else{
-    noFirst.style.display = "inline"
-    noFirst.innerText = (errorMessages.firstName)
+    errorMessage(noFirst)
     return false;
   }
 }
@@ -98,8 +118,7 @@ function isLastValid() {
       return false;
     }
   } else {
-    noLast.style.display = "inline"
-    noLast.innerText = (errorMessages.lastName)
+    errorMessage(noLast)
     return false;
   }
 }
@@ -110,8 +129,7 @@ function isMailValid() {
     noMail.style.display = "none"
     return true;
   } else {
-    noMail.style.display = "inline"
-    noMail.innerText = (errorMessages.email)
+    errorMessage(noMail)
     return false;
   }
 }
@@ -122,8 +140,7 @@ function isBirthValid() {
     noBirth.style.display = "none";
     return true;
   } else {
-    noBirth.style.display = "inline"
-    noBirth.innerText = (errorMessages.birthdate)
+    errorMessage(noBirth)
     return false;
   }
  
@@ -135,8 +152,7 @@ function isQuantityValid() {
     noQuant.style.display = "none"
     return true;
   } else {
-    noQuant.style.display = "inline"
-    noQuant.innerText = (errorMessages.quantity)
+    errorMessage(noQuant)
     return false
   }
 }
@@ -147,15 +163,14 @@ function isCityValid() {
   inputLocation.forEach(function(location){
     if (location.checked) {
       counter++
-    } 
+    }
   })
 
   if (counter !== 0) {
     noCity.style.display = "none"
     return true
   } else {
-    noCity.style.display = "inline"
-    noCity.innerText = (errorMessages.location)
+    errorMessage(noCity)
     return false
   }
 }
@@ -166,54 +181,31 @@ function isCheckboxValid() {
     noCheck.style.display = "none"
     return true
   } else{
-    noCheck.style.display = "inline"
-    noCheck.innerText = (errorMessages.checkbox)
+    errorMessage(noCheck)
     return false
   }
 }
 
-form.addEventListener('input', isBirthValid);
-form.addEventListener('input', isCheckboxValid);
-form.addEventListener('input', isCityValid);
-form.addEventListener('input', isFirstValid);
-form.addEventListener('input', isLastValid);
-form.addEventListener('input', isMailValid)
-form.addEventListener('input', isQuantityValid)
+inputFirst.addEventListener('blur', isFirstValid);
+inputLast.addEventListener('blur', isLastValid);
+inputMail.addEventListener('blur', isMailValid);
+inputBirth.addEventListener('change', isBirthValid);
+inputQuantity.addEventListener('change', isQuantityValid);
+form.addEventListener('change', isCityValid);
+inputCheckbox.addEventListener('change', isCheckboxValid);
 
 //vérification de la validité du formulaire
 btnSubmit.addEventListener('click', function(e) {
   e.preventDefault()
 
   let isFormValid = true
-  if (!isFirstValid){
-    isFormValid = false
-  }
-
-  if (!isLastValid){
-    isFormValid = false
-  }
-
-  if (!isMailValid){
-    isFormValid = false
-  }
-
-  if (!isBirthValid){
-    isFormValid = false
-  }
-
-  if (!isQuantityValid){
-    isFormValid = false
-  }
-  if (!isCityValid){
-    isFormValid = false
-  }
-  if (!isCheckboxValid) {
+  if (!isFirstValid() || !isLastValid() || !isMailValid() || !isBirthValid() || !isQuantityValid() || !isCityValid() || !isCheckboxValid()){
     isFormValid = false
   }
 
   //Si le formulaire est valide on ferme la fenêtre et on affiche un message
   if (isFormValid) {
-    modalbg.style.display = "none";
-    success.style.display = "inline"
+    closeModal();
+    success.style.display = "inline";
   }
-})
+});
