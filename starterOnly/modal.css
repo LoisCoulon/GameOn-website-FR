@@ -33,6 +33,8 @@ img {
 .topnav {
   overflow: hidden;
   margin: 3.5%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header-logo {
@@ -79,6 +81,7 @@ img {
 
 .success {
   display: none;
+  text-align: center;
 }
 
 main {
@@ -162,6 +165,22 @@ main {
   margin: 15px auto;
 }
 
+.modal-body-submit{
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 800ms;
+}
+
+.btn-close{
+  display: none;
+  border: none;
+  text-align: center;
+  position: absolute;
+  bottom: 2rem;
+}
+
 label {
   font-family: var(--font-default);
   font-size: 17px;
@@ -174,6 +193,10 @@ input {
   padding: 8px;
   border: 0.8px solid #ccc;
   outline: none;
+}
+
+.outline{
+  outline: 1px solid red;
 }
 
 .text-control {
@@ -401,7 +424,6 @@ input[data-error]::after {
 }
 
 .hero-section {
-  min-height: 93vh;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -486,7 +508,7 @@ footer {
   margin: 0 20px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 920px) {
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -566,7 +588,38 @@ footer {
 @media screen and (max-width: 540px) {
   .hero-content{
     min-width: unset;
+    padding: 0px;
   }
+  .topnav{
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .topnav a.icon{
+    color: red;
+  }
+  .topnav a.icon:hover{
+    color: white;
+  }
+  .header-logo{
+    margin: 1rem;
+  }
+  .header-logo img{
+    width: 10rem;
+  }
+  .hero-headline{
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+  .hero-text{
+    margin-top: 20px;
+    font-size: 1rem;
+  }
+
+  .hero-section{
+    min-height: unset;
+  }
+
 }
 
 @keyframes modalopen {

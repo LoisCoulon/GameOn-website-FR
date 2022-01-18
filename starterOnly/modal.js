@@ -11,8 +11,10 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+const modalBody = document.querySelector(".modal-body");
+const btnClose = document.querySelector(".btn-close");
 
-const btnClose = document.querySelector(".close");
+const closeCross = document.querySelector(".close");
 const btnSubmit = document.getElementById("btn-submit");
 const form = document.getElementById("form");
 const success = document.getElementById("success");
@@ -56,7 +58,7 @@ const emailRegex = RegExp(/^[a-z0-9._-]+@[a-z_]+?\.[a-z]{2,3}$/);
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // close modal event
-btnClose.addEventListener("click", closeModal);
+closeCross.addEventListener("click", closeModal);
 
 // launch modal form
 function launchModal() {
@@ -68,23 +70,34 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
-//retourne un message d'erreur pour l'id concerné
-function errorMessage(idName) {
-  idName.style.display = "inline"
-  switch(idName) {
-    case noFirst : idName.innerText = (errorMessages.firstName);
+//active la classe outline
+function addOutline(el) {
+  return el.classList.add("outline")
+}
+
+//Désactive les messages d'erreur
+function removeChanges(text, el) {
+  text.style.display = "none"
+  el.classList.remove("outline")
+}
+
+//retourne un message d'erreur pour l'élément concerné
+function errorMessage(text, el) {
+  text.style.display = "inline"
+  switch(text) {
+    case noFirst : text.innerText = (errorMessages.firstName), addOutline(el);
     break;
-    case noLast : idName.innerText = (errorMessages.lastName);
+    case noLast : text.innerText = (errorMessages.lastName), addOutline(el);
     break;
-    case noMail : idName.innerText = (errorMessages.email);
+    case noMail : text.innerText = (errorMessages.email), addOutline(el);
     break;
-    case noBirth : idName.innerText = (errorMessages.birthdate);
+    case noBirth : text.innerText = (errorMessages.birthdate), addOutline(el);
     break;
-    case noQuant : idName.innerText = (errorMessages.quantity);
+    case noQuant : text.innerText = (errorMessages.quantity), addOutline(el);
     break;
-    case noCity : idName.innerText = (errorMessages.location);
+    case noCity : text.innerText = (errorMessages.location);
     break;
-    case noCheck : idName.innerText = (errorMessages.checkbox);
+    case noCheck : text.innerText = (errorMessages.checkbox);
     break;
   }
 }
@@ -93,15 +106,16 @@ function errorMessage(idName) {
 function isFirstValid() {
   if (inputFirst.value.length >= 2){
     if (nameRegex.test(inputFirst.value)) {
-      noFirst.style.display = "none"
+      removeChanges(noFirst ,inputFirst)
       return true;
     } else {
       noFirst.style.display = "inline"
       noFirst.innerText = (errorMessages.reg)
+      inputFirst.classList.add("outline")
       return false;
     }
   } else{
-    errorMessage(noFirst)
+    errorMessage(noFirst, inputFirst)
     return false;
   }
 }
@@ -110,15 +124,16 @@ function isFirstValid() {
 function isLastValid() {
   if (inputLast.value.length >= 2) {
     if (nameRegex.test(inputLast.value)) {
-      noLast.style.display = "none"
+      removeChanges(noLast ,inputLast)
       return true;
     } else {
       noLast.style.display = "inline"
       noLast.innerText = (errorMessages.reg)
+      inputLast.classList.add("outline")
       return false;
     }
   } else {
-    errorMessage(noLast)
+    errorMessage(noLast, inputLast)
     return false;
   }
 }
@@ -126,10 +141,10 @@ function isLastValid() {
 //Vérification de la validité de l'email
 function isMailValid() {
   if (emailRegex.test(inputMail.value)) {
-    noMail.style.display = "none"
+    removeChanges(noMail ,inputMail)
     return true;
   } else {
-    errorMessage(noMail)
+    errorMessage(noMail, inputMail)
     return false;
   }
 }
@@ -137,10 +152,10 @@ function isMailValid() {
 //Vérification de la validité de la date de naissance
 function isBirthValid() {
   if (inputBirth.value != 0) {
-    noBirth.style.display = "none";
+    removeChanges(noBirth ,inputBirth)
     return true;
   } else {
-    errorMessage(noBirth)
+    errorMessage(noBirth, inputBirth)
     return false;
   }
  
@@ -149,10 +164,10 @@ function isBirthValid() {
 //Vérification de la validité du nombre de participations
 function isQuantityValid() {
   if (inputQuantity.value >= 0 && isNaN(inputQuantity.value) === false && inputQuantity.value !== "") {
-    noQuant.style.display = "none"
+    removeChanges(noQuant ,inputQuantity)
     return true;
   } else {
-    errorMessage(noQuant)
+    errorMessage(noQuant, inputQuantity)
     return false
   }
 }
@@ -203,9 +218,12 @@ btnSubmit.addEventListener('click', function(e) {
     isFormValid = false
   }
 
-  //Si le formulaire est valide on ferme la fenêtre et on affiche un message
+  //Si le formulaire est valide on affiche un message à la place du form
   if (isFormValid) {
-    closeModal();
+    form.style.display = "none";
     success.style.display = "inline";
+    modalBody.classList.add("modal-body-submit");
+    btnClose.style.display = "block";
+    btnClose.addEventListener("click", closeModal);
   }
 });

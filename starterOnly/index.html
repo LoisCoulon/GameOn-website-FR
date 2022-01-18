@@ -28,7 +28,6 @@
     </div>
   </div>
   <main>
-    <span class="success" id="success">Merci ! Votre réservation a bien été reçue</span>
     <div class="hero-section">
       <div class="hero-content">
         <h1 class="hero-headline">
@@ -55,6 +54,7 @@
       <div class="content">
         <span class="close"></span>
         <div class="modal-body">
+          <span class="success" id="success">Merci ! Votre réservation a bien été reçue</span>
           <form name="reserve" action="index.html" method="get" onsubmit="return validate();" id="form">
             <div class="formData">
               <label for="first">Prénom</label><br>
@@ -131,6 +131,7 @@
             </div>
             <input class="button btn-submit" id="btn-submit" type="submit" value="C'est parti" />
           </form>
+          <input class="button btn-close" id="btn-close" value="Fermer" />
         </div>
       </div>
     </div>
