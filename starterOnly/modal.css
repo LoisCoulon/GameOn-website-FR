@@ -181,7 +181,7 @@ main {
 
 label {
   font-family: var(--font-default);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: normal;
   display: inline-block;
   margin-bottom: 11px;
@@ -418,7 +418,7 @@ input[data-error]::after {
 /* custom select end */
 .text-label {
   font-weight: normal;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .hero-section {
@@ -622,11 +622,11 @@ footer {
     height: 90vh;
   }
   .formData label{
-    font-size: 0.74rem;
+    font-size: 0.8rem;
   }
   .text-label{
-    font-size: 0.74rem;
-    margin-top: 0.74rem;
+    font-size: 0.8rem;
+    margin-top: 0.8rem;
   }
   .content{
     margin: 0;
