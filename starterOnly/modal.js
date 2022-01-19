@@ -42,12 +42,12 @@ const inputLocation = document.getElementsByName("location");
 const errorMessages = {
   firstName: "Veuillez entrer un prénom comportant 2 caractères ou plus.",
   reg: "Veuillez entrer des caractères valides",
-	lastName: "Veuillez entrer un nom comportant 2 caractères ou plus.",
-	email: "Veuillez entrer une adresse email valide.",
-	birthdate: "Veuillez entrer votre date de naissance",
-	quantity: "Veuillez entrer un nombre valide.",
-	location: "Veuillez choisir une ville.",
-	checkbox: "Veuillez accepter les conditions d'utilisations.",
+  lastName: "Veuillez entrer un nom comportant 2 caractères ou plus.",
+  email: "Veuillez entrer une adresse email valide.",
+  birthdate: "Veuillez entrer votre date de naissance",
+  quantity: "Veuillez entrer un nombre valide.",
+  location: "Veuillez choisir une ville.",
+  checkbox: "Veuillez accepter les conditions d'utilisations.",
 };
 
 //regex
@@ -84,29 +84,29 @@ function removeChanges(text, el) {
 //retourne un message d'erreur pour l'élément concerné
 function errorMessage(text, el) {
   text.style.display = "inline"
-  switch(text) {
-    case noFirst : text.innerText = (errorMessages.firstName), addOutline(el);
-    break;
-    case noLast : text.innerText = (errorMessages.lastName), addOutline(el);
-    break;
-    case noMail : text.innerText = (errorMessages.email), addOutline(el);
-    break;
-    case noBirth : text.innerText = (errorMessages.birthdate), addOutline(el);
-    break;
-    case noQuant : text.innerText = (errorMessages.quantity), addOutline(el);
-    break;
-    case noCity : text.innerText = (errorMessages.location);
-    break;
-    case noCheck : text.innerText = (errorMessages.checkbox);
-    break;
+  switch (text) {
+    case noFirst: text.innerText = (errorMessages.firstName), addOutline(el);
+      break;
+    case noLast: text.innerText = (errorMessages.lastName), addOutline(el);
+      break;
+    case noMail: text.innerText = (errorMessages.email), addOutline(el);
+      break;
+    case noBirth: text.innerText = (errorMessages.birthdate), addOutline(el);
+      break;
+    case noQuant: text.innerText = (errorMessages.quantity), addOutline(el);
+      break;
+    case noCity: text.innerText = (errorMessages.location);
+      break;
+    case noCheck: text.innerText = (errorMessages.checkbox);
+      break;
   }
 }
 
 //Vérification de la validité du prénom
 function isFirstValid() {
-  if (inputFirst.value.length >= 2){
+  if (inputFirst.value.length >= 2) {
     if (nameRegex.test(inputFirst.value)) {
-      removeChanges(noFirst ,inputFirst)
+      removeChanges(noFirst, inputFirst)
       return true;
     } else {
       noFirst.style.display = "inline"
@@ -114,7 +114,7 @@ function isFirstValid() {
       inputFirst.classList.add("outline")
       return false;
     }
-  } else{
+  } else {
     errorMessage(noFirst, inputFirst)
     return false;
   }
@@ -124,7 +124,7 @@ function isFirstValid() {
 function isLastValid() {
   if (inputLast.value.length >= 2) {
     if (nameRegex.test(inputLast.value)) {
-      removeChanges(noLast ,inputLast)
+      removeChanges(noLast, inputLast)
       return true;
     } else {
       noLast.style.display = "inline"
@@ -141,7 +141,7 @@ function isLastValid() {
 //Vérification de la validité de l'email
 function isMailValid() {
   if (emailRegex.test(inputMail.value)) {
-    removeChanges(noMail ,inputMail)
+    removeChanges(noMail, inputMail)
     return true;
   } else {
     errorMessage(noMail, inputMail)
@@ -152,19 +152,19 @@ function isMailValid() {
 //Vérification de la validité de la date de naissance
 function isBirthValid() {
   if (inputBirth.value != 0) {
-    removeChanges(noBirth ,inputBirth)
+    removeChanges(noBirth, inputBirth)
     return true;
   } else {
     errorMessage(noBirth, inputBirth)
     return false;
   }
- 
+
 }
 
 //Vérification de la validité du nombre de participations
 function isQuantityValid() {
   if (inputQuantity.value >= 0 && isNaN(inputQuantity.value) === false && inputQuantity.value !== "") {
-    removeChanges(noQuant ,inputQuantity)
+    removeChanges(noQuant, inputQuantity)
     return true;
   } else {
     errorMessage(noQuant, inputQuantity)
@@ -175,7 +175,7 @@ function isQuantityValid() {
 //Vérification de la ville sélectionnée
 function isCityValid() {
   let counter = 0
-  inputLocation.forEach(function(location){
+  inputLocation.forEach(function (location) {
     if (location.checked) {
       counter++
     }
@@ -195,7 +195,7 @@ function isCheckboxValid() {
   if (inputCheckbox.checked) {
     noCheck.style.display = "none"
     return true
-  } else{
+  } else {
     errorMessage(noCheck)
     return false
   }
@@ -210,11 +210,11 @@ form.addEventListener('change', isCityValid);
 inputCheckbox.addEventListener('change', isCheckboxValid);
 
 //vérification de la validité du formulaire
-btnSubmit.addEventListener('click', function(e) {
+btnSubmit.addEventListener('click', function (e) {
   e.preventDefault()
 
   let isFormValid = true
-  if (!isFirstValid() || !isLastValid() || !isMailValid() || !isBirthValid() || !isQuantityValid() || !isCityValid() || !isCheckboxValid()){
+  if (!isFirstValid() || !isLastValid() || !isMailValid() || !isBirthValid() || !isQuantityValid() || !isCityValid() || !isCheckboxValid()) {
     isFormValid = false
   }
 
@@ -227,3 +227,12 @@ btnSubmit.addEventListener('click', function(e) {
     btnClose.addEventListener("click", closeModal);
   }
 });
+
+//Réinitialise le formulaire
+function newForm() {
+  form.reset();
+  form.style.display = "block"
+  success.style.display = "none";
+  modalBody.classList.remove("modal-body-submit");
+  btnClose.style.display = "none";
+}
