@@ -224,8 +224,8 @@ btnSubmit.addEventListener('click', function (e) {
     success.style.display = "inline";
     modalBody.classList.add("modal-body-submit");
     btnClose.style.display = "block";
-    btnClose.addEventListener("click", closeModal);
   }
+  btnClose.addEventListener("click", closeModal);
 });
 
 //Réinitialise le formulaire

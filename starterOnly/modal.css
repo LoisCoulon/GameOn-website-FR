@@ -33,8 +33,6 @@ img {
 .topnav {
   overflow: hidden;
   margin: 3.5%;
-  display: flex;
-  justify-content: space-between;
 }
 
 .header-logo {
@@ -583,41 +581,45 @@ footer {
   }
 }
 
+.topnav a.icon{
+  color: red;
+}
+.topnav a.icon:hover{
+  color: white;
+}
+
 
 
 @media screen and (max-width: 540px) {
-  .hero-content{
-    min-width: unset;
-    padding: 0px;
-  }
-  .topnav{
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .topnav a.icon{
-    color: red;
-  }
-  .topnav a.icon:hover{
-    color: white;
-  }
+
   .header-logo{
     margin: 1rem;
   }
   .header-logo img{
     width: 10rem;
   }
+
+  .hero-section{
+    min-height: unset;
+  }
+  .hero-content{
+    min-width: unset;
+    padding: 0px;
+  }
   .hero-headline{
     font-size: 2.5rem;
     font-weight: 600;
   }
-
   .hero-text{
     margin-top: 20px;
-    font-size: 1rem;
+    font-size: 0.8rem;
+    text-align: justify;
   }
 
-  .hero-section{
-    min-height: unset;
+  .bground{
+    bottom: 0;
+    top: unset;
+    height: 90%;
   }
 
 }
