@@ -85,19 +85,31 @@ function removeChanges(text, el) {
 function errorMessage(text, el) {
   text.style.display = "inline"
   switch (text) {
-    case noFirst: text.innerText = (errorMessages.firstName), addOutline(el);
+    case noFirst:
+      text.innerText = (errorMessages.firstName);
+      addOutline(el);
       break;
-    case noLast: text.innerText = (errorMessages.lastName), addOutline(el);
+    case noLast: 
+      text.innerText = (errorMessages.lastName);
+      addOutline(el);
       break;
-    case noMail: text.innerText = (errorMessages.email), addOutline(el);
+    case noMail: 
+      text.innerText = (errorMessages.email);
+      addOutline(el);
       break;
-    case noBirth: text.innerText = (errorMessages.birthdate), addOutline(el);
+    case noBirth: 
+      text.innerText = (errorMessages.birthdate); 
+      addOutline(el);
       break;
-    case noQuant: text.innerText = (errorMessages.quantity), addOutline(el);
+    case noQuant: 
+      text.innerText = (errorMessages.quantity);
+      addOutline(el);
       break;
-    case noCity: text.innerText = (errorMessages.location);
+    case noCity: 
+      text.innerText = (errorMessages.location);
       break;
-    case noCheck: text.innerText = (errorMessages.checkbox);
+    case noCheck: 
+      text.innerText = (errorMessages.checkbox);
       break;
   }
 }
@@ -208,6 +220,7 @@ inputBirth.addEventListener('change', isBirthValid);
 inputQuantity.addEventListener('change', isQuantityValid);
 form.addEventListener('change', isCityValid);
 inputCheckbox.addEventListener('change', isCheckboxValid);
+btnClose.addEventListener("click", closeModal);
 
 //vérification de la validité du formulaire
 btnSubmit.addEventListener('click', function (e) {
@@ -225,7 +238,6 @@ btnSubmit.addEventListener('click', function (e) {
     modalBody.classList.add("modal-body-submit");
     btnClose.style.display = "block";
   }
-  btnClose.addEventListener("click", closeModal);
 });
 
 //Réinitialise le formulaire
