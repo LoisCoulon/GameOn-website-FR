@@ -162,7 +162,7 @@ main {
   margin: 15px auto;
 }
 
-.modal-body-submit{
+.modal-body-submit {
   height: 80vh;
   display: flex;
   justify-content: center;
@@ -170,7 +170,7 @@ main {
   transition: all 800ms;
 }
 
-.btn-close{
+.btn-close {
   display: none;
   border: none;
   text-align: center;
@@ -192,7 +192,7 @@ input {
   outline: none;
 }
 
-.outline{
+.outline {
   outline: 1px solid red;
 }
 
@@ -581,10 +581,11 @@ footer {
   }
 }
 
-.topnav a.icon{
+.topnav a.icon {
   color: red;
 }
-.topnav a.icon:hover{
+
+.topnav a.icon:hover {
   color: white;
 }
 
@@ -592,43 +593,50 @@ footer {
 
 @media screen and (max-width: 540px) {
 
-  .header-logo{
+  .header-logo {
     margin: 1rem;
   }
-  .header-logo img{
+
+  .header-logo img {
     width: 10rem;
   }
 
-  .hero-section{
+  .hero-section {
     min-height: unset;
   }
-  .hero-content{
+
+  .hero-content {
     min-width: unset;
     padding: 0px;
   }
-  .hero-headline{
+
+  .hero-headline {
     font-size: 2.5rem;
     font-weight: 600;
   }
-  .hero-text{
+
+  .hero-text {
     margin-top: 20px;
     font-size: 0.8rem;
     text-align: justify;
   }
 
-  .bground{
+  .bground {
     bottom: 0;
     top: unset;
     height: 90vh;
   }
-  label{
+
+  label {
     font-size: 0.8rem;
   }
-  .text-label{
+
+  .text-label {
     font-size: 0.8rem;
     margin-top: 0.8rem;
   }
-  .content{
+
+  .content {
     margin: 0;
     padding: 0;
     height: max-content;

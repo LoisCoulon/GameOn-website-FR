@@ -19,7 +19,7 @@ const btnSubmit = document.getElementById("btn-submit");
 const form = document.getElementById("form");
 const success = document.getElementById("success");
 
-//Error span selectors
+// Error span selectors
 const noFirst = document.getElementById("no_first");
 const noLast = document.getElementById("no_last");
 const noMail = document.getElementById("no_email");
@@ -28,17 +28,17 @@ const noQuant = document.getElementById("no_num");
 const noCity = document.getElementById("no_city");
 const noCheck = document.getElementById("no_check");
 
-//input selectors
+// Input selectors
 const inputFirst = document.getElementById("first");
 const inputLast = document.getElementById("last");
 const inputMail = document.getElementById("email");
 const inputBirth = document.getElementById("birthdate");
 const inputQuantity = document.getElementById("quantity");
 const inputCheckbox = document.getElementById("checkbox1");
-//All inputs named location
+// All inputs named location
 const inputLocation = document.getElementsByName("location");
 
-//error messages
+// Error messages
 const errorMessages = {
   firstName: "Veuillez entrer un prénom comportant 2 caractères ou plus.",
   reg: "Veuillez entrer des caractères valides",
@@ -50,38 +50,38 @@ const errorMessages = {
   checkbox: "Veuillez accepter les conditions d'utilisations.",
 };
 
-//regex
+// Regex
 const nameRegex = /^[a-z-éèêëïîùüû\s]+$/i;
 const emailRegex = RegExp(/^[a-z0-9._-]+@[a-z_]+?\.[a-z]{2,3}$/);
 
-// launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
-// close modal event
-closeCross.addEventListener("click", closeModal);
-
-// launch modal form
+// Launch modal form
 function launchModal() {
   modalbg.style.display = "block";
 }
 
-// close modal form
+// Close modal form
 function closeModal() {
   modalbg.style.display = "none";
 }
 
-//active la classe outline
+// Launch modal event
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+
+// Close modal event
+closeCross.addEventListener("click", closeModal);
+
+// Active la classe outline
 function addOutline(el) {
   return el.classList.add("outline")
 }
 
-//Désactive les messages d'erreur
+// Désactive les messages d'erreur
 function removeChanges(text, el) {
   text.style.display = "none"
   el.classList.remove("outline")
 }
 
-//retourne un message d'erreur pour l'élément concerné
+// Retourne un message d'erreur pour l'élément concerné
 function errorMessage(text, el) {
   text.style.display = "inline"
   switch (text) {
@@ -89,32 +89,32 @@ function errorMessage(text, el) {
       text.innerText = (errorMessages.firstName);
       addOutline(el);
       break;
-    case noLast: 
+    case noLast:
       text.innerText = (errorMessages.lastName);
       addOutline(el);
       break;
-    case noMail: 
+    case noMail:
       text.innerText = (errorMessages.email);
       addOutline(el);
       break;
-    case noBirth: 
-      text.innerText = (errorMessages.birthdate); 
+    case noBirth:
+      text.innerText = (errorMessages.birthdate);
       addOutline(el);
       break;
-    case noQuant: 
+    case noQuant:
       text.innerText = (errorMessages.quantity);
       addOutline(el);
       break;
-    case noCity: 
+    case noCity:
       text.innerText = (errorMessages.location);
       break;
-    case noCheck: 
+    case noCheck:
       text.innerText = (errorMessages.checkbox);
       break;
   }
 }
 
-//Vérification de la validité du prénom
+// Vérification de la validité du prénom
 function isFirstValid() {
   if (inputFirst.value.length >= 2) {
     if (nameRegex.test(inputFirst.value)) {
@@ -132,7 +132,7 @@ function isFirstValid() {
   }
 }
 
-//Vérification de la validité du nom
+// Vérification de la validité du nom
 function isLastValid() {
   if (inputLast.value.length >= 2) {
     if (nameRegex.test(inputLast.value)) {
@@ -150,7 +150,7 @@ function isLastValid() {
   }
 }
 
-//Vérification de la validité de l'email
+// Vérification de la validité de l'email
 function isMailValid() {
   if (emailRegex.test(inputMail.value)) {
     removeChanges(noMail, inputMail)
@@ -161,9 +161,9 @@ function isMailValid() {
   }
 }
 
-//Vérification de la validité de la date de naissance
+// Vérification de la validité de la date de naissance
 function isBirthValid() {
-  if (inputBirth.value != 0) {
+  if (inputBirth.value !== "") {
     removeChanges(noBirth, inputBirth)
     return true;
   } else {
@@ -173,7 +173,7 @@ function isBirthValid() {
 
 }
 
-//Vérification de la validité du nombre de participations
+// Vérification de la validité du nombre de participations
 function isQuantityValid() {
   if (inputQuantity.value >= 0 && isNaN(inputQuantity.value) === false && inputQuantity.value !== "") {
     removeChanges(noQuant, inputQuantity)
@@ -184,7 +184,7 @@ function isQuantityValid() {
   }
 }
 
-//Vérification de la ville sélectionnée
+// Vérification de la ville sélectionnée
 function isCityValid() {
   let counter = 0
   inputLocation.forEach(function (location) {
@@ -202,7 +202,7 @@ function isCityValid() {
   }
 }
 
-//Vérification du cochage des conditions
+// Vérification du cochage des conditions
 function isCheckboxValid() {
   if (inputCheckbox.checked) {
     noCheck.style.display = "none"
@@ -222,7 +222,7 @@ form.addEventListener('change', isCityValid);
 inputCheckbox.addEventListener('change', isCheckboxValid);
 btnClose.addEventListener("click", closeModal);
 
-//vérification de la validité du formulaire
+// Vérification de la validité du formulaire
 btnSubmit.addEventListener('click', function (e) {
   e.preventDefault()
 
@@ -231,7 +231,7 @@ btnSubmit.addEventListener('click', function (e) {
     isFormValid = false
   }
 
-  //Si le formulaire est valide on affiche un message à la place du form
+  // Si le formulaire est valide on affiche un message à la place du form
   if (isFormValid) {
     form.style.display = "none";
     success.style.display = "inline";
@@ -240,7 +240,7 @@ btnSubmit.addEventListener('click', function (e) {
   }
 });
 
-//Réinitialise le formulaire
+// Réinitialise le formulaire
 function newForm() {
   form.reset();
   form.style.display = "block"
