@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -175,7 +176,7 @@ function isBirthValid() {
 
 // Vérification de la validité du nombre de participations
 function isQuantityValid() {
-  if (inputQuantity.value >= 0 && isNaN(inputQuantity.value) === false && inputQuantity.value !== "") {
+  if (inputQuantity.value >= 0 && !isNaN(inputQuantity.value) && inputQuantity.value !== "") {
     removeChanges(noQuant, inputQuantity)
     return true;
   } else {
@@ -216,9 +217,11 @@ function isCheckboxValid() {
 inputFirst.addEventListener('blur', isFirstValid);
 inputLast.addEventListener('blur', isLastValid);
 inputMail.addEventListener('blur', isMailValid);
-inputBirth.addEventListener('change', isBirthValid);
-inputQuantity.addEventListener('change', isQuantityValid);
-form.addEventListener('change', isCityValid);
+inputBirth.addEventListener('blur', isBirthValid);
+inputQuantity.addEventListener('blur', isQuantityValid);
+inputLocation.forEach(function(e) {
+  e.addEventListener('change', isCityValid);
+})
 inputCheckbox.addEventListener('change', isCheckboxValid);
 btnClose.addEventListener("click", closeModal);
 
