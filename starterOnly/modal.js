@@ -117,7 +117,7 @@ function errorMessage(text, el) {
 
 // Vérification de la validité du prénom
 function isFirstValid() {
-  if (inputFirst.value.length >= 2) {
+  if (inputFirst.value.trim().length >= 2) {
     if (nameRegex.test(inputFirst.value)) {
       removeChanges(noFirst, inputFirst)
       return true;
@@ -135,7 +135,7 @@ function isFirstValid() {
 
 // Vérification de la validité du nom
 function isLastValid() {
-  if (inputLast.value.length >= 2) {
+  if (inputLast.value.trim().length >= 2) {
     if (nameRegex.test(inputLast.value)) {
       removeChanges(noLast, inputLast)
       return true;
